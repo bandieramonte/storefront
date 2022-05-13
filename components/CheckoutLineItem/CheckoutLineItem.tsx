@@ -26,12 +26,12 @@ export function CheckoutLineItem({ line }: CheckoutLineItemProps) {
   const t = useIntl();
   const { query, formatPrice } = useRegions();
   const { checkoutToken: token } = useCheckout();
-  const [checkoutLineUpdateMutation, { loading: loadingLineUpdate }] =
-    useCheckoutLineUpdateMutation();
+  const [checkoutLineUpdateMutation] = useCheckoutLineUpdateMutation();
   const [removeProductFromCheckout] = useRemoveProductFromCheckoutMutation();
 
   const [quantity, setQuantity] = React.useState<number>();
   const [errors, setErrors] = React.useState<ErrorDetailsFragment[] | null>(null);
+  const [loading, setLoading] = React.useState<boolean | undefined>(undefined);
 
   React.useEffect(() => {
     if (!line) return;
@@ -44,6 +44,7 @@ export function CheckoutLineItem({ line }: CheckoutLineItemProps) {
   };
 
   const onQuantityUpdate = async (event: any) => {
+    setLoading(true);
     changeLineState(event);
     if (!event?.target?.validity?.valid || event?.target?.value === "") return;
     const result = await checkoutLineUpdateMutation({
@@ -58,9 +59,12 @@ export function CheckoutLineItem({ line }: CheckoutLineItemProps) {
         locale: query.locale,
       },
     });
+    setLoading(result.data == null);
     const mutationErrors = result.data?.checkoutLinesUpdate?.errors;
     if (mutationErrors && mutationErrors.length > 0) {
       setErrors(mutationErrors);
+    } else {
+      setErrors(null);
     }
   };
 
@@ -140,7 +144,7 @@ export function CheckoutLineItem({ line }: CheckoutLineItemProps) {
                 }}
                 min={1}
                 required
-                disabled={loadingLineUpdate}
+                disabled={loading}
                 pattern="[0-9]*"
               />
               <p className="text-xl text-gray-900 text-right">
