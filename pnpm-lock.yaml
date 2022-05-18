@@ -56,6 +56,7 @@ specifiers:
   react-dom: 18.0.0
   react-hook-form: ^7.29.0
   react-intl: ^5.24.6
+  react-simple-image-slider: ^2.4.1
   react-use: ^17.3.2
   tailwind-scrollbar-hide: ^1.1.7
   tailwindcss: 3.0.23
@@ -89,6 +90,7 @@ dependencies:
   react-dom: 18.0.0_react@18.0.0
   react-hook-form: 7.29.0_react@18.0.0
   react-intl: 5.24.6_react@18.0.0+typescript@4.6.3
+  react-simple-image-slider: 2.4.1
   react-use: 17.3.2_react-dom@18.0.0+react@18.0.0
   tailwind-scrollbar-hide: 1.1.7
 
@@ -2094,7 +2096,7 @@ packages:
   /@graphql-tools/utils/8.6.1_graphql@16.3.0:
     resolution: {integrity: sha512-uxcfHCocp4ENoIiovPxUWZEHOnbXqj3ekWc0rm7fUhW93a1xheARNHcNKhwMTR+UKXVJbTFQdGI1Rl5XdyvDBg==}
     peerDependencies:
-      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || 16 || 16
+      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || 16 || 16 || 16
     dependencies:
       graphql: 16.3.0
       tslib: 2.3.1
@@ -5765,7 +5767,7 @@ packages:
     resolution: {integrity: sha512-AXYXHDN6M52AwFnGqH/vlwyo0gbC9zM7QS/4ryOTI0RUqfze5FJl8uSrxKJMzK6hGFdDeQXcZoWsLGXeCVtTwg==}
     peerDependencies:
       next: '>= 6.0.0'
-      react: '>= 16.0.0'
+      react: '>= 16.0.0 || 18'
     dependencies:
       next: 12.1.4_react-dom@18.0.0+react@18.0.0
       nprogress: 0.2.0
@@ -6291,6 +6293,10 @@ packages:
 
   /react-property/2.0.0:
     resolution: {integrity: sha512-kzmNjIgU32mO4mmH5+iUyrqlpFQhF8K2k7eZ4fdLSOPFrD1XgEuSBv9LDEgxRXTMBqMd8ppT0x6TIzqE5pdGdw==}
+    dev: false
+
+  /react-simple-image-slider/2.4.1:
+    resolution: {integrity: sha512-9T/WjsRThJup43QxzH202rLVNqaUK9P8izTiWOfLcc5w3QygU44a9IQUuIwGYiXtWvw2spRRGLRc5Xd62/vfDg==}
     dev: false
 
   /react-universal-interface/0.6.2_react@18.0.0+tslib@2.3.1:

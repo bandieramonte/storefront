@@ -27,8 +27,6 @@ module.exports = {
           lg: "992px",
           xl: "1200px",
           xxl: "1440px",
-
-          "2xl": "1348px",
         },
       },
       colors: {
@@ -43,9 +41,10 @@ module.exports = {
           4: "rgba(57, 64, 82, 0.15)",
           5: "#EEF1F7",
         },
-
+        backgroundColor: " #f8f9fa",
         transparent: "transparent",
         black: "#22292f",
+        pitchBlack: "#000000",
         "grey-darkest": "#3d4852",
         "grey-darker": "#606f7b",
         "grey-dark": "#8795a1",

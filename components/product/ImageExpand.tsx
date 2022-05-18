@@ -1,6 +1,5 @@
 import { XIcon } from "@heroicons/react/outline";
-import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 
 import { ProductMediaFragment } from "@/saleor/api";
 
@@ -9,16 +8,27 @@ interface ImageExpandProps {
   onRemoveExpand: () => void;
 }
 export function ImageExpand({ image, onRemoveExpand }: ImageExpandProps) {
+  const handleEsc = (event: { keyCode: number }) => {
+    if (event.keyCode === 27) {
+      onRemoveExpand();
+    }
+  };
+  window.addEventListener("keydown", handleEsc);
+
+  useEffect(() => () => {
+      window.removeEventListener("keydown", handleEsc);
+    }, []);
+
   if (!image) {
     return null;
   }
 
   return (
-    <div className="min-h-screen absolute overflow-hidden grid grid-cols-1 mx-auto px-8 md:h-full w-full bg-gray-100">
+    <div className="min-h-screen flex flex-col mt-10 px-8 mx-auto h-full w-full bg-backgroundColor">
       <div
         role="button"
         tabIndex={0}
-        className="absolute grid h-6 justify-end w-full z-40 p-8 lg:px-8 mx-auto"
+        className="z-40 pt-8 lg:px-8 mx-auto mt-36"
         onClick={() => onRemoveExpand()}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
@@ -28,8 +38,8 @@ export function ImageExpand({ image, onRemoveExpand }: ImageExpandProps) {
       >
         <XIcon className="w-6 h-6" />
       </div>
-      <div className="w-full h-full absolute md:mt-10">
-        <Image src={image.url} alt={image.alt} layout="fill" objectFit="scale-down" />
+      <div className="w-full flex justify-center items-center mt-8">
+        <img src={image.url} alt={image.alt} />
       </div>
     </div>
   );
