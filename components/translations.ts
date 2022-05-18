@@ -127,6 +127,11 @@ export const messages = defineMessages({
     description: "Message displayed during adding product to the cart.",
     defaultMessage: "Adding...",
   },
+  goBack: {
+    id: "app.product.goBack",
+    description: "Message inviting user to go back to product list.",
+    defaultMessage: "Go back",
+  },
   checkoutButton: {
     id: "app.checkout.checkoutButton",
     description: "Go to checkout button label.",

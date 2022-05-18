@@ -27,4 +27,4 @@ export const getYouTubeIDFromURL = (url: string) => {
 };
 
 export const getVideoThumbnail = (videoUrl: string) =>
-  `https://img.youtube.com/vi/${getYouTubeIDFromURL(videoUrl)}/maxresdefault.jpg`;
+  `https://img.youtube.com/vi/${getYouTubeIDFromURL(videoUrl)}/hqdefault.jpg`; // Some youtube videos have no maxresdefault thumbnails
