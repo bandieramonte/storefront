@@ -1,7 +1,7 @@
 import React from "react";
 import { useIntl } from "react-intl";
 
-import { ProductFilterInput, ProductOrder,useProductCollectionQuery } from "@/saleor/api";
+import { ProductFilterInput, ProductOrder, useProductCollectionQuery } from "@/saleor/api";
 
 import { Pagination } from "../Pagination";
 import { ProductCard } from "../ProductCard";
@@ -42,7 +42,7 @@ export function ProductCollection({ filter, allowMore = true, sortBy }: ProductC
 
   const products = data?.products?.edges.map((edge) => edge.node) || [];
   if (products.length === 0) {
-    return <p>{t.formatMessage(messages.noProducts)}</p>;
+    return <p className="text-base">{t.formatMessage(messages.noProducts)}</p>;
   }
   return (
     <div>

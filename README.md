@@ -1,5 +1,3 @@
-[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsaleor%2Freact-storefront&project-name=my-react-storefront&repo-name=my-react-storefront)
-
 # React Storefront
 
 ![alt text](https://og-image.vercel.app/React%20Storefront.png?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fvercel-triangle-black.svg&images=https%3A%2F%2Fsaleor.io%2Fstatic%2Flogo-ad1b99aa7c6f5acf58a61640af760cfd.svg)
@@ -14,6 +12,7 @@ React Storefront is an open-source frontend e-commerce platform from the [Saleor
 - TypeScript
 - GraphQL with Apollo Client
 - Tailwind CSS
+- [Saleor Checkout](https://github.com/saleor/saleor-checkout)
 
 ## Motivation
 
@@ -124,6 +123,13 @@ export const ProductLinkComponent = () => {
   );
 };
 ```
+
+### Saleor Checkout
+
+React Storefront uses the new [Saleor Checkout](https://github.com/saleor/saleor-checkout) for checkout and payments. The setup is as easy as:
+
+1. Deploy Saleor Checkout
+2. Set the `NEXT_PUBLIC_CHECKOUT_URL` environment variable with Saleor Checkout URL
 
 ### Code style
 

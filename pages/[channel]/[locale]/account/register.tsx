@@ -95,7 +95,7 @@ function RegisterPage() {
 
               <div className="">
                 <button
-                  type="button"
+                  type="submit"
                   className="btn-main mt-4 mb-3 w-full py-2 transition duration-100"
                 >
                   {t.formatMessage(messages.registerButton)}

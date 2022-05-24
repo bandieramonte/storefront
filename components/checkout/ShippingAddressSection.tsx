@@ -88,7 +88,7 @@ export function ShippingAddressSection({ active, checkout }: ShippingAddressSect
                 updateAddressMutation={(address: AddressFormData) => updateMutation(address)}
               />
             )}
-            <div className="col-span-full">
+            <div className="col-span-full pb-4">
               <button type="button" className="btn-secondary" onClick={onSameAsBilling}>
                 {t.formatMessage(messages.sameAsBillingButton)}
               </button>
