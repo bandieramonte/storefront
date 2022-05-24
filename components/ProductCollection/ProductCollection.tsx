@@ -1,7 +1,7 @@
 import React from "react";
 import { useIntl } from "react-intl";
 
-import { ProductFilterInput, useProductCollectionQuery } from "@/saleor/api";
+import { ProductFilterInput, ProductOrder,useProductCollectionQuery } from "@/saleor/api";
 
 import { Pagination } from "../Pagination";
 import { ProductCard } from "../ProductCard";
@@ -12,15 +12,18 @@ import { messages } from "../translations";
 export interface ProductCollectionProps {
   filter?: ProductFilterInput;
   allowMore?: boolean;
+  sortBy?: ProductOrder;
 }
 
-export function ProductCollection({ filter, allowMore = true }: ProductCollectionProps) {
+export function ProductCollection({ filter, allowMore = true, sortBy }: ProductCollectionProps) {
   const t = useIntl();
   const { query } = useRegions();
 
   const { loading, error, data, fetchMore } = useProductCollectionQuery({
+    fetchPolicy: "no-cache",
     variables: {
       filter,
+      sortBy,
       ...query,
     },
   });

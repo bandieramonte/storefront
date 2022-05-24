@@ -6,6 +6,31 @@ export const messages = defineMessages({
     description: "Link to proceed to the product collection view.",
     defaultMessage: "More →",
   },
+  sortBy: {
+    id: "app.home.sortBy",
+    description: "Message for sorting products in the homepage.",
+    defaultMessage: "Order products by:",
+  },
+  sortName: {
+    id: "app.home.sortName",
+    description: "Option to sort products in the homepage by name.",
+    defaultMessage: "Name",
+  },
+  sortPrice: {
+    id: "app.home.sortPrice",
+    description: "Option to sort products in the homepage by price.",
+    defaultMessage: "Price",
+  },
+  asc: {
+    id: "app.home.asc",
+    description: "Option to sort products in the homepage in the ascending order.",
+    defaultMessage: "ascending",
+  },
+  desc: {
+    id: "app.home.desc",
+    description: "Option to sort products in the homepage in the descending order.",
+    defaultMessage: "descending",
+  },
   loginWelcomeMessage: {
     id: "app.login.greeting",
     description: "Welcome message on home screen",
@@ -110,7 +135,7 @@ export const messages = defineMessages({
   variantNotChosen: {
     id: "app.product.variantNotChosen",
     description: "Warning message when variant is not chosen.",
-    defaultMessage: "Please chose the variant",
+    defaultMessage: "Please choose the variant",
   },
   soldOut: {
     id: "app.product.soldOut",

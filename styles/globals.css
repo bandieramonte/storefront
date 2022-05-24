@@ -71,6 +71,17 @@ body {
   min-height: 100vh;
 }
 
+select {
+  @apply text-base cursor-pointer;
+}
+select:focus {
+  box-shadow: none;
+}
+
+input:focus {
+  border: none;
+}
+
 h1,
 h2,
 h3,

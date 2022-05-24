@@ -1,8 +1,9 @@
 import { ApolloQueryResult } from "@apollo/client";
 import { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from "next";
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 
 import { HomepageBlock, Layout } from "@/components";
+import { ProductSort } from "@/components/ProductSort";
 import { BaseSeo } from "@/components/seo/BaseSeo";
 import { HOMEPAGE_MENU } from "@/lib/const";
 import apolloClient from "@/lib/graphql";
@@ -11,6 +12,8 @@ import {
   HomepageBlocksQuery,
   HomepageBlocksQueryDocument,
   HomepageBlocksQueryVariables,
+  OrderDirection,
+  ProductOrder,
 } from "@/saleor/api";
 
 const headLineSectionStyle = {
@@ -37,7 +40,16 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
     revalidate: 60 * 60, // value in seconds, how often ISR will trigger on the server
   };
 };
+
 function Home({ menuData }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const [chosenSortBy, setSortBy] = useState<ProductOrder>({
+    direction: "ASC" as OrderDirection,
+  });
+
+  const passData = (data: ProductOrder) => {
+    setSortBy(data);
+  };
+
   return (
     <>
       <BaseSeo />
@@ -61,11 +73,12 @@ function Home({ menuData }: InferGetStaticPropsType<typeof getStaticProps>) {
 
         <main>
           <div className="container py-10">
+            <ProductSort passData={passData} />
             {menuData?.menu?.items?.map((m) => {
               if (!m) {
                 return null;
               }
-              return <HomepageBlock key={m.id} menuItem={m} />;
+              return <HomepageBlock key={m.id} menuItem={m} sortBy={chosenSortBy} />;
             })}
           </div>
         </main>
