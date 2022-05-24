@@ -5,7 +5,7 @@ import { UrlObject } from "url";
 
 import { usePaths } from "@/lib/paths";
 import { translate } from "@/lib/translations";
-import { HomepageBlockFragment, ProductFilterInput } from "@/saleor/api";
+import { HomepageBlockFragment, ProductFilterInput, ProductOrder } from "@/saleor/api";
 
 import { ProductCollection } from "../ProductCollection";
 import { RichText } from "../RichText";
@@ -13,9 +13,10 @@ import { messages } from "../translations";
 
 export interface HomepageBlockProps {
   menuItem: HomepageBlockFragment;
+  sortBy: ProductOrder;
 }
 
-export function HomepageBlock({ menuItem }: HomepageBlockProps) {
+export function HomepageBlock({ menuItem, sortBy }: HomepageBlockProps) {
   const paths = usePaths();
   const t = useIntl();
   const filter: ProductFilterInput = {};
@@ -37,7 +38,7 @@ export function HomepageBlock({ menuItem }: HomepageBlockProps) {
       <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 pb-4">
         {translate(menuItem, "name")}
       </h1>
-      <ProductCollection filter={filter} allowMore={false} />
+      <ProductCollection filter={filter} allowMore={false} sortBy={sortBy} />
       <div className="flex flex-row-reverse p-4">
         <Link href={link} passHref>
           <a href="pass">

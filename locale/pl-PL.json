@@ -1,5 +1,10 @@
 {
   "app.home.greeting": "Więcej →",
+  "app.home.sortBy": "Order products by:",
+  "app.home.sortName": "Name",
+  "app.home.sortPrice": "Price",
+  "app.home.asc": "ascending",
+  "app.home.desc": "descending",
   "app.navigation.login": "Zaloguj",
   "app.product.addToCart": "Dodaj do koszyka",
   "app.product.attributes": "Atrybuty",
