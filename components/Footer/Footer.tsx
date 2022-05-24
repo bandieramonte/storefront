@@ -8,6 +8,8 @@ import { usePaths } from "@/lib/paths";
 import { useFooterMenuQuery } from "@/saleor/api";
 
 import { Box } from "../Box";
+import { ChannelDropdown } from "../regionDropdowns/ChannelDropdown";
+import { LocaleDropdown } from "../regionDropdowns/LocaleDropdown";
 import { useRegions } from "../RegionsProvider";
 import styles from "./Footer.module.css";
 
@@ -84,9 +86,15 @@ export function Footer({ className, ...rest }: FooterProps) {
           </Link>
           <h1 className="uppercase font-normal">{process.env.NEXT_PUBLIC_STOREFRONT_NAME || ""}</h1>
         </div>
-        <p className="text-sm">
-          © Copyright 2007 - {new Date().getFullYear()} CSPI, LLC. All right reserved.
-        </p>
+        <div className="flex">
+          <p className="text-sm flex shrink-0">
+            © Copyright 2007 - {new Date().getFullYear()} CSPI, LLC. All right reserved.
+          </p>
+          <div className="invisible md:visible flex gap-4 justify-end w-full">
+            <ChannelDropdown horizontalAlignment="right" />
+            <LocaleDropdown horizontalAlignment="right" />
+          </div>
+        </div>
       </Box>
     </footer>
   );

@@ -10,8 +10,6 @@ import { useCheckout } from "@/lib/providers/CheckoutProvider";
 import { CheckoutLineDetailsFragment } from "@/saleor/api";
 
 import { BurgerMenu } from "../BurgerMenu";
-import { RegionDialog } from "../RegionDialog";
-import { useRegions } from "../RegionsProvider";
 import { Menu } from "./Menu";
 import styles from "./Navbar.module.css";
 import NavIconButton from "./NavIconButton";
@@ -22,10 +20,8 @@ export function Navbar() {
   const router = useRouter();
 
   const [isBurgerOpen, setBurgerOpen] = useState(false);
-  const [isRegionDialogOpen, setRegionDialogOpen] = useState(false);
   const { authenticated } = useAuthState();
   const { checkout } = useCheckout();
-  const { currentChannel } = useRegions();
 
   useEffect(() => {
     // Close side menu after changing the page
@@ -61,14 +57,6 @@ export function Navbar() {
             <Menu />
           </div>
           <div className="flex justify-end">
-            <button
-              type="button"
-              tabIndex={-1}
-              className="group -m-2 p-2 flex items-center text-base font-medium hidden"
-              onClick={() => setRegionDialogOpen(true)}
-            >
-              {currentChannel.currencyCode}
-            </button>
             {!authenticated ? (
               <Link href={paths.account.login.$url()} passHref>
                 <a href="pass">
@@ -97,7 +85,6 @@ export function Navbar() {
           </div>
         </div>
       </div>
-      <RegionDialog isOpen={isRegionDialogOpen} onClose={() => setRegionDialogOpen(false)} />
       <BurgerMenu open={isBurgerOpen} onCloseClick={() => setBurgerOpen(false)} />
     </>
   );

@@ -42,8 +42,8 @@ function Cart() {
           </div>
         </header>
         <main>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 container px-8">
-            <section className="col-span-2">
+          <div className="grid grid-cols-1 md:grid-cols-3 md:gap-8 container px-8">
+            <div className="col-span-2">
               <ul className="divide-y divide-gray-200">
                 {isCheckoutLoading ? (
                   <Spinner />
@@ -55,7 +55,7 @@ function Cart() {
                   ))
                 )}
               </ul>
-            </section>
+            </div>
 
             {!!checkout && (
               <div>
