@@ -154,8 +154,24 @@ export const messages = defineMessages({
   },
   goBack: {
     id: "app.product.goBack",
-    description: "Message inviting user to go back to product list.",
+    description: "Message inviting user to go back from current page.",
     defaultMessage: "Go back",
+  },
+  freeShipping: {
+    id: "app.product.freeShipping",
+    description: "Message informing user that the shipping is free.",
+    defaultMessage: "Free shipping",
+  },
+  longDescription: {
+    id: "app.product.longDescription",
+    description: "Message for the title of a product page long description.",
+    defaultMessage: "Description",
+  },
+  suggestedProducts: {
+    id: "app.product.suggestedProducts",
+    description:
+      "Message for the title of the collection of suggested products at the end of a product page.",
+    defaultMessage: "Suggested Products",
   },
   checkoutButton: {
     id: "app.checkout.checkoutButton",

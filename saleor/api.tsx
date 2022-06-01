@@ -10775,6 +10775,12 @@ export type Product = Node & ObjectWithMetadata & {
   isAvailable?: Maybe<Scalars['Boolean']>;
   /** Whether the product is available for purchase. */
   isAvailableForPurchase?: Maybe<Scalars['Boolean']>;
+  longDescription?: Maybe<Scalars['JSONString']>;
+  /**
+   * Long description of the product (JSON).
+   * @deprecated This field will be removed in Saleor 4.0. Use the `longDescription` field instead.
+   */
+  longDescriptionJson?: Maybe<Scalars['JSONString']>;
   /** List of media for the product. */
   media?: Maybe<Array<ProductMedia>>;
   /** Get a single product media by ID. */
@@ -11095,6 +11101,8 @@ export type ProductCreateInput = {
   collections?: InputMaybe<Array<Scalars['ID']>>;
   /** Product description (JSON). */
   description?: InputMaybe<Scalars['JSONString']>;
+  /** Product long description (JSON). */
+  longDescription?: InputMaybe<Scalars['JSONString']>;
   /** Product name. */
   name?: InputMaybe<Scalars['String']>;
   /** ID of the type that product belongs to. */
@@ -11187,6 +11195,7 @@ export type ProductFieldEnum =
   | 'CHARGE_TAXES'
   | 'COLLECTIONS'
   | 'DESCRIPTION'
+  | 'LONG_DESCRIPTION'
   | 'NAME'
   | 'PRODUCT_MEDIA'
   | 'PRODUCT_TYPE'
@@ -11251,6 +11260,8 @@ export type ProductInput = {
   collections?: InputMaybe<Array<Scalars['ID']>>;
   /** Product description (JSON). */
   description?: InputMaybe<Scalars['JSONString']>;
+  /** Product long description (JSON). */
+  longDescription?: InputMaybe<Scalars['JSONString']>;
   /** Product name. */
   name?: InputMaybe<Scalars['String']>;
   /** Defines the product rating value. */
@@ -11443,6 +11454,12 @@ export type ProductTranslatableContent = Node & {
    */
   descriptionJson?: Maybe<Scalars['JSONString']>;
   id: Scalars['ID'];
+  longDescription?: Maybe<Scalars['JSONString']>;
+  /**
+   * Long description of the product (JSON).
+   * @deprecated This field will be removed in Saleor 4.0. Use the `longDescription` field instead.
+   */
+  longDescriptionJson?: Maybe<Scalars['JSONString']>;
   name: Scalars['String'];
   /**
    * Represents an individual item for sale in the storefront.
@@ -11480,6 +11497,12 @@ export type ProductTranslation = Node & {
   id: Scalars['ID'];
   /** Translation language. */
   language: LanguageDisplay;
+  longDescription?: Maybe<Scalars['JSONString']>;
+  /**
+   * Translated long description of the product (JSON).
+   * @deprecated This field will be removed in Saleor 4.0. Use the `longDescription` field instead.
+   */
+  longDescriptionJson?: Maybe<Scalars['JSONString']>;
   name?: Maybe<Scalars['String']>;
   seoDescription?: Maybe<Scalars['String']>;
   seoTitle?: Maybe<Scalars['String']>;
@@ -14711,6 +14734,7 @@ export type TranslationErrorCode =
 
 export type TranslationInput = {
   description?: InputMaybe<Scalars['JSONString']>;
+  longDescription?: InputMaybe<Scalars['JSONString']>;
   name?: InputMaybe<Scalars['String']>;
   seoDescription?: InputMaybe<Scalars['String']>;
   seoTitle?: InputMaybe<Scalars['String']>;
@@ -16206,7 +16230,7 @@ export type PriceFragment = { __typename?: 'Money', currency: string, amount: nu
 
 export type ProductCardFragment = { __typename?: 'Product', id: string, slug: string, name: string, translation?: { __typename?: 'ProductTranslation', id: string, name?: string | null } | null, thumbnail?: { __typename?: 'Image', url: string, alt?: string | null } | null, category?: { __typename?: 'Category', id: string, name: string, translation?: { __typename?: 'CategoryTranslation', id: string, name?: string | null } | null } | null, pricing?: { __typename?: 'ProductPricingInfo', onSale?: boolean | null, priceRange?: { __typename?: 'TaxedMoneyRange', start?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null, stop?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null } | null } | null };
 
-export type ProductDetailsFragment = { __typename?: 'Product', id: string, name: string, slug: string, description?: string | null, seoDescription?: string | null, seoTitle?: string | null, isAvailableForPurchase?: boolean | null, translation?: { __typename?: 'ProductTranslation', id: string, description?: string | null, name?: string | null } | null, attributes: Array<{ __typename?: 'SelectedAttribute', attribute: { __typename?: 'Attribute', id: string, name?: string | null, type?: AttributeTypeEnum | null, unit?: MeasurementUnitsEnum | null, translation?: { __typename?: 'AttributeTranslation', id: string, name: string } | null }, values: Array<{ __typename?: 'AttributeValue', id: string, name?: string | null, value?: string | null, translation?: { __typename?: 'AttributeValueTranslation', id: string, name: string, richText?: string | null } | null }> }>, category?: { __typename?: 'Category', name: string, id: string, slug: string, translation?: { __typename?: 'CategoryTranslation', id: string, name?: string | null } | null } | null, variants?: Array<{ __typename?: 'ProductVariant', id: string, name: string, quantityAvailable?: number | null, translation?: { __typename?: 'ProductVariantTranslation', id: string, name: string } | null, attributes: Array<{ __typename?: 'SelectedAttribute', attribute: { __typename?: 'Attribute', id: string, name?: string | null, type?: AttributeTypeEnum | null, unit?: MeasurementUnitsEnum | null, translation?: { __typename?: 'AttributeTranslation', id: string, name: string } | null }, values: Array<{ __typename?: 'AttributeValue', id: string, name?: string | null, value?: string | null, translation?: { __typename?: 'AttributeValueTranslation', id: string, name: string, richText?: string | null } | null }> }>, media?: Array<{ __typename?: 'ProductMedia', url: string, alt: string, type: ProductMediaType }> | null, pricing?: { __typename?: 'VariantPricingInfo', price?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null } | null }> | null, pricing?: { __typename?: 'ProductPricingInfo', priceRange?: { __typename?: 'TaxedMoneyRange', start?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null } | null } | null, media?: Array<{ __typename?: 'ProductMedia', url: string, alt: string, type: ProductMediaType }> | null, thumbnail?: { __typename?: 'Image', url: string, alt?: string | null } | null };
+export type ProductDetailsFragment = { __typename?: 'Product', id: string, name: string, slug: string, description?: string | null, longDescription?: string | null, seoDescription?: string | null, seoTitle?: string | null, isAvailableForPurchase?: boolean | null, translation?: { __typename?: 'ProductTranslation', id: string, description?: string | null, longDescription?: string | null, name?: string | null } | null, attributes: Array<{ __typename?: 'SelectedAttribute', attribute: { __typename?: 'Attribute', id: string, name?: string | null, type?: AttributeTypeEnum | null, unit?: MeasurementUnitsEnum | null, translation?: { __typename?: 'AttributeTranslation', id: string, name: string } | null }, values: Array<{ __typename?: 'AttributeValue', id: string, name?: string | null, value?: string | null, translation?: { __typename?: 'AttributeValueTranslation', id: string, name: string, richText?: string | null } | null }> }>, category?: { __typename?: 'Category', name: string, id: string, slug: string, translation?: { __typename?: 'CategoryTranslation', id: string, name?: string | null } | null } | null, variants?: Array<{ __typename?: 'ProductVariant', id: string, name: string, quantityAvailable?: number | null, translation?: { __typename?: 'ProductVariantTranslation', id: string, name: string } | null, attributes: Array<{ __typename?: 'SelectedAttribute', attribute: { __typename?: 'Attribute', id: string, name?: string | null, type?: AttributeTypeEnum | null, unit?: MeasurementUnitsEnum | null, translation?: { __typename?: 'AttributeTranslation', id: string, name: string } | null }, values: Array<{ __typename?: 'AttributeValue', id: string, name?: string | null, value?: string | null, translation?: { __typename?: 'AttributeValueTranslation', id: string, name: string, richText?: string | null } | null }> }>, media?: Array<{ __typename?: 'ProductMedia', url: string, alt: string, type: ProductMediaType }> | null, pricing?: { __typename?: 'VariantPricingInfo', price?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null } | null }> | null, pricing?: { __typename?: 'ProductPricingInfo', priceRange?: { __typename?: 'TaxedMoneyRange', start?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null } | null } | null, media?: Array<{ __typename?: 'ProductMedia', url: string, alt: string, type: ProductMediaType }> | null, thumbnail?: { __typename?: 'Image', url: string, alt?: string | null } | null };
 
 export type ProductMediaFragment = { __typename?: 'ProductMedia', url: string, alt: string, type: ProductMediaType };
 
@@ -16234,6 +16258,7 @@ export type CheckoutAddProductLineMutationVariables = Exact<{
   checkoutToken: Scalars['UUID'];
   variantId: Scalars['ID'];
   locale: LanguageCodeEnum;
+  quantity: Scalars['Int'];
 }>;
 
 
@@ -16474,7 +16499,7 @@ export type ProductBySlugQueryVariables = Exact<{
 }>;
 
 
-export type ProductBySlugQuery = { __typename?: 'Query', product?: { __typename?: 'Product', id: string, name: string, slug: string, description?: string | null, seoDescription?: string | null, seoTitle?: string | null, isAvailableForPurchase?: boolean | null, translation?: { __typename?: 'ProductTranslation', id: string, description?: string | null, name?: string | null } | null, attributes: Array<{ __typename?: 'SelectedAttribute', attribute: { __typename?: 'Attribute', id: string, name?: string | null, type?: AttributeTypeEnum | null, unit?: MeasurementUnitsEnum | null, translation?: { __typename?: 'AttributeTranslation', id: string, name: string } | null }, values: Array<{ __typename?: 'AttributeValue', id: string, name?: string | null, value?: string | null, translation?: { __typename?: 'AttributeValueTranslation', id: string, name: string, richText?: string | null } | null }> }>, category?: { __typename?: 'Category', name: string, id: string, slug: string, translation?: { __typename?: 'CategoryTranslation', id: string, name?: string | null } | null } | null, variants?: Array<{ __typename?: 'ProductVariant', id: string, name: string, quantityAvailable?: number | null, translation?: { __typename?: 'ProductVariantTranslation', id: string, name: string } | null, attributes: Array<{ __typename?: 'SelectedAttribute', attribute: { __typename?: 'Attribute', id: string, name?: string | null, type?: AttributeTypeEnum | null, unit?: MeasurementUnitsEnum | null, translation?: { __typename?: 'AttributeTranslation', id: string, name: string } | null }, values: Array<{ __typename?: 'AttributeValue', id: string, name?: string | null, value?: string | null, translation?: { __typename?: 'AttributeValueTranslation', id: string, name: string, richText?: string | null } | null }> }>, media?: Array<{ __typename?: 'ProductMedia', url: string, alt: string, type: ProductMediaType }> | null, pricing?: { __typename?: 'VariantPricingInfo', price?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null } | null }> | null, pricing?: { __typename?: 'ProductPricingInfo', priceRange?: { __typename?: 'TaxedMoneyRange', start?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null } | null } | null, media?: Array<{ __typename?: 'ProductMedia', url: string, alt: string, type: ProductMediaType }> | null, thumbnail?: { __typename?: 'Image', url: string, alt?: string | null } | null } | null };
+export type ProductBySlugQuery = { __typename?: 'Query', product?: { __typename?: 'Product', id: string, name: string, slug: string, description?: string | null, longDescription?: string | null, seoDescription?: string | null, seoTitle?: string | null, isAvailableForPurchase?: boolean | null, translation?: { __typename?: 'ProductTranslation', id: string, description?: string | null, longDescription?: string | null, name?: string | null } | null, attributes: Array<{ __typename?: 'SelectedAttribute', attribute: { __typename?: 'Attribute', id: string, name?: string | null, type?: AttributeTypeEnum | null, unit?: MeasurementUnitsEnum | null, translation?: { __typename?: 'AttributeTranslation', id: string, name: string } | null }, values: Array<{ __typename?: 'AttributeValue', id: string, name?: string | null, value?: string | null, translation?: { __typename?: 'AttributeValueTranslation', id: string, name: string, richText?: string | null } | null }> }>, category?: { __typename?: 'Category', name: string, id: string, slug: string, translation?: { __typename?: 'CategoryTranslation', id: string, name?: string | null } | null } | null, variants?: Array<{ __typename?: 'ProductVariant', id: string, name: string, quantityAvailable?: number | null, translation?: { __typename?: 'ProductVariantTranslation', id: string, name: string } | null, attributes: Array<{ __typename?: 'SelectedAttribute', attribute: { __typename?: 'Attribute', id: string, name?: string | null, type?: AttributeTypeEnum | null, unit?: MeasurementUnitsEnum | null, translation?: { __typename?: 'AttributeTranslation', id: string, name: string } | null }, values: Array<{ __typename?: 'AttributeValue', id: string, name?: string | null, value?: string | null, translation?: { __typename?: 'AttributeValueTranslation', id: string, name: string, richText?: string | null } | null }> }>, media?: Array<{ __typename?: 'ProductMedia', url: string, alt: string, type: ProductMediaType }> | null, pricing?: { __typename?: 'VariantPricingInfo', price?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null } | null }> | null, pricing?: { __typename?: 'ProductPricingInfo', priceRange?: { __typename?: 'TaxedMoneyRange', start?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', currency: string, amount: number } } | null } | null } | null, media?: Array<{ __typename?: 'ProductMedia', url: string, alt: string, type: ProductMediaType }> | null, thumbnail?: { __typename?: 'Image', url: string, alt?: string | null } | null } | null };
 
 export type ProductCollectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']>;
@@ -16919,12 +16944,14 @@ export const ProductDetailsFragmentDoc = gql`
   name
   slug
   description
+  longDescription
   seoDescription
   seoTitle
   isAvailableForPurchase
   translation(languageCode: $locale) {
     id
     description
+    longDescription
     name
   }
   attributes {
@@ -17038,10 +17065,10 @@ export type AddressSetDefaultMutationHookResult = ReturnType<typeof useAddressSe
 export type AddressSetDefaultMutationResult = Apollo.MutationResult<AddressSetDefaultMutation>;
 export type AddressSetDefaultMutationOptions = Apollo.BaseMutationOptions<AddressSetDefaultMutation, AddressSetDefaultMutationVariables>;
 export const CheckoutAddProductLineDocument = gql`
-    mutation CheckoutAddProductLine($checkoutToken: UUID!, $variantId: ID!, $locale: LanguageCodeEnum!) {
+    mutation CheckoutAddProductLine($checkoutToken: UUID!, $variantId: ID!, $locale: LanguageCodeEnum!, $quantity: Int!) {
   checkoutLinesAdd(
     token: $checkoutToken
-    lines: [{quantity: 1, variantId: $variantId}]
+    lines: [{quantity: $quantity, variantId: $variantId}]
   ) {
     checkout {
       ...CheckoutDetailsFragment
@@ -17071,6 +17098,7 @@ export type CheckoutAddProductLineMutationFn = Apollo.MutationFunction<CheckoutA
  *      checkoutToken: // value for 'checkoutToken'
  *      variantId: // value for 'variantId'
  *      locale: // value for 'locale'
+ *      quantity: // value for 'quantity'
  *   },
  * });
  */
@@ -21457,7 +21485,7 @@ export type PreorderThresholdFieldPolicy = {
 	quantity?: FieldPolicy<any> | FieldReadFunction<any>,
 	soldUnits?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type ProductKeySpecifier = ('attributes' | 'availableForPurchase' | 'availableForPurchaseAt' | 'category' | 'channel' | 'channelListings' | 'chargeTaxes' | 'collections' | 'created' | 'defaultVariant' | 'description' | 'descriptionJson' | 'id' | 'imageById' | 'images' | 'isAvailable' | 'isAvailableForPurchase' | 'media' | 'mediaById' | 'metadata' | 'metafield' | 'metafields' | 'name' | 'pricing' | 'privateMetadata' | 'privateMetafield' | 'privateMetafields' | 'productType' | 'rating' | 'seoDescription' | 'seoTitle' | 'slug' | 'taxType' | 'thumbnail' | 'translation' | 'updatedAt' | 'variants' | 'weight' | ProductKeySpecifier)[];
+export type ProductKeySpecifier = ('attributes' | 'availableForPurchase' | 'availableForPurchaseAt' | 'category' | 'channel' | 'channelListings' | 'chargeTaxes' | 'collections' | 'created' | 'defaultVariant' | 'description' | 'descriptionJson' | 'id' | 'imageById' | 'images' | 'isAvailable' | 'isAvailableForPurchase' | 'longDescription' | 'longDescriptionJson' | 'media' | 'mediaById' | 'metadata' | 'metafield' | 'metafields' | 'name' | 'pricing' | 'privateMetadata' | 'privateMetafield' | 'privateMetafields' | 'productType' | 'rating' | 'seoDescription' | 'seoTitle' | 'slug' | 'taxType' | 'thumbnail' | 'translation' | 'updatedAt' | 'variants' | 'weight' | ProductKeySpecifier)[];
 export type ProductFieldPolicy = {
 	attributes?: FieldPolicy<any> | FieldReadFunction<any>,
 	availableForPurchase?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -21476,6 +21504,8 @@ export type ProductFieldPolicy = {
 	images?: FieldPolicy<any> | FieldReadFunction<any>,
 	isAvailable?: FieldPolicy<any> | FieldReadFunction<any>,
 	isAvailableForPurchase?: FieldPolicy<any> | FieldReadFunction<any>,
+	longDescription?: FieldPolicy<any> | FieldReadFunction<any>,
+	longDescriptionJson?: FieldPolicy<any> | FieldReadFunction<any>,
 	media?: FieldPolicy<any> | FieldReadFunction<any>,
 	mediaById?: FieldPolicy<any> | FieldReadFunction<any>,
 	metadata?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -21660,12 +21690,14 @@ export type ProductReorderAttributeValuesFieldPolicy = {
 	product?: FieldPolicy<any> | FieldReadFunction<any>,
 	productErrors?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type ProductTranslatableContentKeySpecifier = ('attributeValues' | 'description' | 'descriptionJson' | 'id' | 'name' | 'product' | 'seoDescription' | 'seoTitle' | 'translation' | ProductTranslatableContentKeySpecifier)[];
+export type ProductTranslatableContentKeySpecifier = ('attributeValues' | 'description' | 'descriptionJson' | 'id' | 'longDescription' | 'longDescriptionJson' | 'name' | 'product' | 'seoDescription' | 'seoTitle' | 'translation' | ProductTranslatableContentKeySpecifier)[];
 export type ProductTranslatableContentFieldPolicy = {
 	attributeValues?: FieldPolicy<any> | FieldReadFunction<any>,
 	description?: FieldPolicy<any> | FieldReadFunction<any>,
 	descriptionJson?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	longDescription?: FieldPolicy<any> | FieldReadFunction<any>,
+	longDescriptionJson?: FieldPolicy<any> | FieldReadFunction<any>,
 	name?: FieldPolicy<any> | FieldReadFunction<any>,
 	product?: FieldPolicy<any> | FieldReadFunction<any>,
 	seoDescription?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -21678,12 +21710,14 @@ export type ProductTranslateFieldPolicy = {
 	product?: FieldPolicy<any> | FieldReadFunction<any>,
 	translationErrors?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type ProductTranslationKeySpecifier = ('description' | 'descriptionJson' | 'id' | 'language' | 'name' | 'seoDescription' | 'seoTitle' | ProductTranslationKeySpecifier)[];
+export type ProductTranslationKeySpecifier = ('description' | 'descriptionJson' | 'id' | 'language' | 'longDescription' | 'longDescriptionJson' | 'name' | 'seoDescription' | 'seoTitle' | ProductTranslationKeySpecifier)[];
 export type ProductTranslationFieldPolicy = {
 	description?: FieldPolicy<any> | FieldReadFunction<any>,
 	descriptionJson?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	language?: FieldPolicy<any> | FieldReadFunction<any>,
+	longDescription?: FieldPolicy<any> | FieldReadFunction<any>,
+	longDescriptionJson?: FieldPolicy<any> | FieldReadFunction<any>,
 	name?: FieldPolicy<any> | FieldReadFunction<any>,
 	seoDescription?: FieldPolicy<any> | FieldReadFunction<any>,
 	seoTitle?: FieldPolicy<any> | FieldReadFunction<any>
