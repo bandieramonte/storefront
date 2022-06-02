@@ -22,7 +22,7 @@ export function PageHero({ entity }: PageHeroProps) {
         <h1 className="text-5xl text-white font-bold mb-4">{translate(entity, "name")}</h1>
 
         {description && (
-          <span className="text-lg inline-block sm:block">
+          <span className="text-lg inline-block sm:block text-white">
             <RichText jsonStringData={description} />
           </span>
         )}

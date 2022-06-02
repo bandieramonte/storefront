@@ -17,5 +17,6 @@ export { PageHero } from "./PageHero";
 export { Pagination } from "./Pagination";
 export { VariantSelector } from "./product/VariantSelector";
 export { ProductCollection } from "./ProductCollection";
+export { ProductDescriptors } from "./ProductDescriptors";
 export { RichText } from "./RichText";
 export { Spinner } from "./Spinner";

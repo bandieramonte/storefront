@@ -14,7 +14,7 @@ export function RichText({ jsonStringData }: RichTextProps) {
   }
 
   return (
-    <article className="text-white text-md">
+    <article className=" text-md">
       <Blocks data={data} />
     </article>
   );

@@ -19,7 +19,7 @@ export function AttributeDetails({ product, selectedVariant }: AttributeDetailsP
   }
   return (
     <div>
-      <p className="text-lg mt-2 font-medium text-gray-500">
+      <p className="text-lg mt-6 font-medium text-gray-500 underline mb-5">
         {t.formatMessage(messages.attributes)}
       </p>
       <div>
