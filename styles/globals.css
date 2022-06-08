@@ -92,9 +92,20 @@ input:focus {
   outline-width: 0;
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  opacity: 1;
+/* Show spinner buttons on Chrome for larger screens */
+@media (min-width: 768px) {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    opacity: 1;
+  }
+}
+
+/* Hide spinner buttons for small screens in Firefox*/
+@media (max-width: 767px) {
+  input[type="number"] {
+    -moz-appearance: textfield;
+    text-align: center;
+  }
 }
 
 h1,
