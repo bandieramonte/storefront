@@ -36,11 +36,11 @@ function CheckoutPage() {
     <>
       <BaseSeo title="Checkout" />
 
-      <main className="w-screen max-w-7xl md:px-8 md:mx-auto overflow-hidden flex md:flex-row flex-col justify-between">
-        <div className="md:w-2/3 w-full">
+      <main className=" max-w-7xl md:px-8 mx-8 sm:mx-auto overflow-hidden flex md:flex-row flex-col justify-between">
+        <div className="">
           <CheckoutForm />
         </div>
-        <div className="md:w-1/3 w-full">
+        <div className="md:w-1/3 w-full pb-12 mdMax:flex mdMax:justify-center ">
           <CheckoutSidebar checkout={checkout} />
         </div>
       </main>

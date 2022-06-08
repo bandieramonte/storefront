@@ -26,7 +26,9 @@ export function ProductGallery({ product, selectedVariant }: ProductGalleryProps
   );
   // TODO: optimize visuals for more than a video at a time
   const onClick = useCallback((idx: number) => {
-    setExpandedImage(galleryMediaImages[idx]);
+    if ((window.innerWidth || 1000) > 500) {
+      setExpandedImage(galleryMediaImages[idx]);
+    }
   }, []);
 
   return (
@@ -43,7 +45,7 @@ export function ProductGallery({ product, selectedVariant }: ProductGalleryProps
             className="flex shrink-0"
           >
             <SimpleImageSlider
-              width={370}
+              width={373}
               height={513}
               images={galleryMediaImages}
               showBullets={galleryMediaImages.length > 1}

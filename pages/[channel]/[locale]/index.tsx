@@ -1,4 +1,5 @@
 import { ApolloQueryResult } from "@apollo/client";
+import { ProductOrderField } from "@saleor/sdk/dist/apollo/types";
 import { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import React, { ReactElement, useState } from "react";
 
@@ -18,7 +19,6 @@ import {
 
 const headLineSectionStyle = {
   width: "100%",
-  height: "345px",
   backgroundImage: `url(${"/images/default_headline_image.png"})`,
   backgroundPosition: "center",
   backgroundSize: "cover",
@@ -44,6 +44,7 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
 function Home({ menuData }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [chosenSortBy, setSortBy] = useState<ProductOrder>({
     direction: "ASC" as OrderDirection,
+    field: "NAME" as ProductOrderField,
   });
 
   const passData = (data: ProductOrder) => {
@@ -58,9 +59,9 @@ function Home({ menuData }: InferGetStaticPropsType<typeof getStaticProps>) {
           <div className="container" />
         </header>
 
-        <section className="bg-fixed align-middle" style={headLineSectionStyle}>
-          <div className="ph_HeadlineSection ml-15 align-middle ">
-            <h3 className="max-w-4xl py-4 text-white lg:text-7xl">
+        <section className="bg-fixed align-middle pb-6 md:pb-10" style={headLineSectionStyle}>
+          <div className="ph_HeadlineSection ml-8 mr-8 sm:ml-15 align-middle ">
+            <h3 className="max-w-4xl py-4 text-white sm:text-5xl lg:text-7xl">
               Which book should I read first?
             </h3>
             <h1 className="font-normal text-white text-md mt-5">

@@ -60,6 +60,14 @@ a:hover {
 
 html {
   font-size: 62.5%;
+  min-width: 425px;
+}
+
+/* Revert min-width:425px for Firefox browsers */
+@-moz-document url-prefix() {
+  html {
+    min-width: 100%;
+  }
 }
 
 body {
@@ -201,17 +209,18 @@ article ol,
 .ph_Container-homepage {
   background-position: 50% -100px;
 }
+
 .ph_HeadlineSection {
   @apply py-10;
 }
 
-@media (min-height: 720px) {
+@media (min-width: 360px) {
   .ph_HeadlineSection {
-    @apply py-16;
+    @apply pt-12;
   }
 }
 
-@media (min-height: 970px) {
+@media (min-width: 970px) {
   .ph_Container-homepage {
     background-position: 50% -200px;
   }

@@ -16,7 +16,8 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        xs: "375px",
+        xs: "360px",
+        mdMax: { max: "767px" },
       },
       container: {
         center: true,

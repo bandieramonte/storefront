@@ -51,9 +51,12 @@ function RegisterPage() {
   });
 
   return (
-    <div className="min-h-screen bg-no-repeat bg-cover bg-center bg-gradient-to-r from-blue-100 to-blue-500">
-      <div className="flex justify-end">
-        <div className="bg-white min-h-screen w-1/2 flex justify-center items-center">
+    <div className="bg-no-repeat bg-cover bg-center bg-gradient-to-r from-blue-100 to-blue-500">
+      <div className="flex md:justify-end justify-center">
+        <div
+          style={{ minHeight: "115vh" }}
+          className="bg-white  w-4/5 sm:w-3/5 md:w-1/2 flex justify-center items-center"
+        >
           <div>
             <form onSubmit={handleRegister}>
               <div>
