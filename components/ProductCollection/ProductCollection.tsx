@@ -46,7 +46,7 @@ export function ProductCollection({ filter, allowMore = true, sortBy }: ProductC
   }
   return (
     <div>
-      <ul className="grid grid-cols-1  sm:w-full m-auto sm:grid-cols-2 xl:grid-cols-4 gap-10 mb-12">
+      <ul className="grid grid-cols-1 w-2/3 sm:w-full m-auto sm:grid-cols-2 xl:grid-cols-4 gap-10 mb-12">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}

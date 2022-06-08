@@ -52,7 +52,7 @@ export function EmailSection({ checkout }: EmailSectionProps) {
         </h2>
       </div>
       {!modifyEmail ? (
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center flex-col gap-3">
           <p className="text-base">{checkout?.email}</p>
           <Button onClick={() => setModifyEmail(true)} className="btn-secondary">
             {t.formatMessage(messages.changeButton)}

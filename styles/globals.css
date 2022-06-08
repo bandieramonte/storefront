@@ -60,6 +60,14 @@ a:hover {
 
 html {
   font-size: 62.5%;
+  min-width: 425px;
+}
+
+/* Revert min-width:425px for Firefox browsers */
+@-moz-document url-prefix() {
+  html {
+    min-width: 100%;
+  }
 }
 
 body {
@@ -84,9 +92,20 @@ input:focus {
   outline-width: 0;
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  opacity: 1;
+/* Show spinner buttons on Chrome for larger screens */
+@media (min-width: 768px) {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    opacity: 1;
+  }
+}
+
+/* Hide spinner buttons for small screens in Firefox*/
+@media (max-width: 767px) {
+  input[type="number"] {
+    -moz-appearance: textfield;
+    text-align: center;
+  }
 }
 
 h1,
@@ -201,17 +220,18 @@ article ol,
 .ph_Container-homepage {
   background-position: 50% -100px;
 }
+
 .ph_HeadlineSection {
   @apply py-10;
 }
 
-@media (min-height: 720px) {
+@media (min-width: 360px) {
   .ph_HeadlineSection {
-    @apply py-16;
+    @apply pt-12;
   }
 }
 
-@media (min-height: 970px) {
+@media (min-width: 970px) {
   .ph_Container-homepage {
     background-position: 50% -200px;
   }

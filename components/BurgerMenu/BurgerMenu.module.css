@@ -18,7 +18,7 @@
 }
 
 .burger-link {
-  @apply text-main-2 text-md font-bold text-left;
+  @apply text-main-2 text-lg  text-left text-brand;
 }
 
 .burger-link + .burger-link {
@@ -30,7 +30,7 @@
 }
 
 .collapse-main {
-  @apply text-main text-lg leading-[1.2em] font-bold block w-full text-left;
+  @apply text-main text-lg leading-[1.2em]  block w-full text-left text-brand;
 }
 
 .collapse-main--active {

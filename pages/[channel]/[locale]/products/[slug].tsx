@@ -83,7 +83,7 @@ function ProductPage({ product, collection }: InferGetStaticPropsType<typeof get
       <ProductPageSeo product={product} />
       <main
         className={clsx(
-          "grid grid-cols-1 gap-4 max-h-full overflow-auto md:overflow-hidden container pt-8 px-8 md:grid-cols-3"
+          "gap-4 max-h-full overflow-auto md:overflow-hidden container pt-8 px-8 md:grid-cols-3"
         )}
       >
         <div>
@@ -91,13 +91,13 @@ function ProductPage({ product, collection }: InferGetStaticPropsType<typeof get
             {t.formatMessage(messages.goBack)}
           </button>
         </div>
-        <h1 className="text-6xl font-bold tracking-tight col-span-3 text-center pb-8">
+        <h1 className="text-6xl font-bold tracking-tight text-center pb-8">
           {translate(product, "name")}
         </h1>
         <div className="col-span-3">
           <ProductGallery product={product} selectedVariant={selectedVariant} />
         </div>
-        <div className="col-span-3 xl:w-4/6 m-auto">
+        <div className="xl:w-4/6 m-auto">
           {longDescription && (
             <div>
               <p className="text-lg mt-2 font-medium text-gray-500 underline mb-11 mt-8 text-center w-full">
@@ -112,11 +112,11 @@ function ProductPage({ product, collection }: InferGetStaticPropsType<typeof get
             <AttributeDetails product={product} selectedVariant={selectedVariant} />
           </div>
         </div>
-        <div className="col-span-3 m-auto">
+        <div className="m-auto">
           <p className="text-lg pb-5 font-medium text-gray-500 underline mb-11 mt-8 text-center w-full">
             {t.formatMessage(messages.suggestedProducts)}
           </p>
-          <div className="flex justify-center content-center">
+          <div className="w-full">
             <ProductCollection filter={{ collections: [collection?.id || ""] }} />
           </div>
         </div>
