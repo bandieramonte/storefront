@@ -135,7 +135,7 @@ export function CheckoutLineItem({ line }: CheckoutLineItemProps) {
                 onFocus={() => {
                   setErrors(null);
                 }}
-                onChange={(ev) => changeLineState(ev)}
+                onChange={(ev) => onQuantityUpdate(ev)}
                 onBlur={(ev) => onQuantityUpdate(ev)}
                 onKeyPress={(ev) => {
                   if (ev.key === "Enter") {

@@ -63,13 +63,6 @@ html {
   min-width: 425px;
 }
 
-/* Revert min-width:425px for Firefox browsers */
-@-moz-document url-prefix() {
-  html {
-    min-width: 100%;
-  }
-}
-
 body {
   @apply text-black subpixel-antialiased font-serif text-base bg-backgroundColor;
 }
@@ -90,22 +83,6 @@ input:focus {
   border: none;
   outline: none;
   outline-width: 0;
-}
-
-/* Show spinner buttons on Chrome for larger screens */
-@media (min-width: 768px) {
-  input[type="number"]::-webkit-inner-spin-button,
-  input[type="number"]::-webkit-outer-spin-button {
-    opacity: 1;
-  }
-}
-
-/* Hide spinner buttons for small screens in Firefox*/
-@media (max-width: 767px) {
-  input[type="number"] {
-    -moz-appearance: textfield;
-    text-align: center;
-  }
 }
 
 h1,
@@ -132,24 +109,6 @@ h5 {
 }
 h6 {
   @apply text-lg;
-}
-
-@media (max-width: 374px) {
-  h2 {
-    font-size: 1.875rem;
-  }
-  h3 {
-    font-size: 1.5rem;
-  }
-  h4 {
-    font-size: 1.25rem;
-  }
-  h5 {
-    font-size: 1.125rem;
-  }
-  h6 {
-    font-size: 1.1rem;
-  }
 }
 
 input,
@@ -225,9 +184,63 @@ article ol,
   @apply py-10;
 }
 
-@media (min-width: 360px) {
+.headLineSectionStyle {
+  width: "100%";
+  min-width: 425px;
+  background-image: url("/images/default_headline_image.png");
+  background-position: "center";
+  background-size: "cover";
+  background-repeat: "no-repeat";
+  position: absolute;
+  top: 152px; /*This is the Navbar's height, so this is locating this banner right below the Navbar*/
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+/* Place screen specific styling here */
+@media (min-width: 320px) {
   .ph_HeadlineSection {
     @apply pt-12;
+  }
+
+  .headLineSectionHeight {
+    height: 250px;
+  }
+}
+
+@media (max-width: 374px) {
+  h2 {
+    font-size: 1.875rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
+  h4 {
+    font-size: 1.25rem;
+  }
+  h5 {
+    font-size: 1.125rem;
+  }
+  h6 {
+    font-size: 1.1rem;
+  }
+}
+
+/* Hide spinner buttons for small screens in Firefox*/
+@media (max-width: 767px) {
+  input[type="number"] {
+    -moz-appearance: textfield;
+    text-align: center;
+  }
+}
+
+/* Show spinner buttons on Chrome for larger screens */
+@media (min-width: 768px) {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    opacity: 1;
   }
 }
 
@@ -237,5 +250,23 @@ article ol,
   }
   .ph_HeadlineSection {
     @apply py-24;
+  }
+
+  .headLineSectionHeight {
+    height: 280px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .headLineSectionHeight {
+    height: 340px;
+  }
+}
+
+/* Place browser specific styling here */
+/* Revert min-width:425px for Firefox browsers */
+@-moz-document url-prefix() {
+  html {
+    min-width: 100%;
   }
 }
