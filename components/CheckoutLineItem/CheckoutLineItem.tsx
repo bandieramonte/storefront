@@ -75,14 +75,12 @@ export function CheckoutLineItem({ line }: CheckoutLineItemProps) {
   if (!line) return null;
   const sUsrAg = navigator.userAgent;
 
-  // const isFirefox = typeof InstallTrigger !== 'undefined';
   const isFirefox = sUsrAg.indexOf("Firefox") > -1;
   function handleKeyPress(event: any) {
     if (event.key === "Enter") {
       onQuantityUpdate(event);
       return;
     }
-    // event = event || window.event;
     const charCode = typeof event.which === "undefined" ? event.keyCode : event.which;
     const charStr = String.fromCharCode(charCode);
 
