@@ -46,7 +46,11 @@ export function CheckoutLineItem({ line }: CheckoutLineItemProps) {
   const onQuantityUpdate = async (event: any) => {
     setLoading(true);
     changeLineState(event);
-    if (!event?.target?.validity?.valid || event?.target?.value === "") return;
+    if (!event?.target?.validity?.valid || event?.target?.value === "") {
+      setLoading(false);
+      return;
+    }
+
     const result = await checkoutLineUpdateMutation({
       variables: {
         token,
@@ -69,6 +73,21 @@ export function CheckoutLineItem({ line }: CheckoutLineItemProps) {
   };
 
   if (!line) return null;
+  const sUsrAg = navigator.userAgent;
+
+  // const isFirefox = typeof InstallTrigger !== 'undefined';
+  const isFirefox = sUsrAg.indexOf("Firefox") > -1;
+  function handleKeyPress(event: any) {
+    if (event.key === "Enter") {
+      onQuantityUpdate(event);
+      return;
+    }
+    // event = event || window.event;
+    const charCode = typeof event.which === "undefined" ? event.keyCode : event.which;
+    const charStr = String.fromCharCode(charCode);
+
+    if (!charStr.match(/^[0-9]+$/)) event.preventDefault();
+  }
 
   return (
     <>
@@ -135,17 +154,16 @@ export function CheckoutLineItem({ line }: CheckoutLineItemProps) {
                 onFocus={() => {
                   setErrors(null);
                 }}
-                onChange={(ev) => onQuantityUpdate(ev)}
+                onClick={(ev) => isFirefox && onQuantityUpdate(ev)}
+                onChange={(ev) => !isFirefox && changeLineState(ev)}
                 onBlur={(ev) => onQuantityUpdate(ev)}
                 onKeyPress={(ev) => {
-                  if (ev.key === "Enter") {
-                    onQuantityUpdate(ev);
-                  }
+                  handleKeyPress(ev);
                 }}
                 min={1}
                 required
                 disabled={loading}
-                pattern="[0-9]*"
+                // pattern="[0-9]*"
               />
               <p className="text-md md:text-xl text-gray-900 text-right">
                 {formatPrice(line?.totalPrice?.gross)}
