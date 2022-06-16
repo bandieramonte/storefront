@@ -2,10 +2,11 @@ import { ApolloQueryResult } from "@apollo/client";
 import { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import { useRouter } from "next/router";
 import Custom404 from "pages/404";
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import { useIntl } from "react-intl";
 
 import { Layout, PageHero, ProductCollection } from "@/components";
+import { ProductSort } from "@/components/ProductSort";
 import { CategoryPageSeo } from "@/components/seo/CategoryPageSeo";
 import { messages } from "@/components/translations";
 import apolloClient from "@/lib/graphql";
@@ -14,6 +15,9 @@ import {
   CategoryBySlugDocument,
   CategoryBySlugQuery,
   CategoryBySlugQueryVariables,
+  OrderDirection,
+  ProductOrder,
+  ProductOrderField,
 } from "@/saleor/api";
 
 export const getStaticProps = async (context: GetStaticPropsContext) => {
@@ -38,25 +42,37 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
 function CategoryPage({ category }: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter();
   const t = useIntl();
+
+  const [chosenSortBy, setSortBy] = useState<ProductOrder>({
+    direction: "ASC" as OrderDirection,
+    field: "NAME" as ProductOrderField,
+  });
+
+  const passData = (data: ProductOrder) => {
+    setSortBy(data);
+  };
+
   if (!category) {
     return <Custom404 />;
   }
+
   return (
     <>
       <CategoryPageSeo category={category} />
-      <header className="mb-10 pt-4">
-        <div className="container px-8">
+      <header className="mb-7 pt-4">
+        <div className="">
           <PageHero entity={category} />
         </div>
       </header>
       <main>
-        <div className="container px-8 pb-12">
-          <div className="pb-3">
+        <div className="pl-10 md:pl-15 container pb-12">
+          <ProductSort passData={passData} />
+          <div className="pb-5">
             <button onClick={router.back} className="text-base cursor-pointer" type="button">
               {t.formatMessage(messages.goBack)}
             </button>
           </div>
-          <ProductCollection filter={{ categories: [category?.id] }} />
+          <ProductCollection filter={{ categories: [category?.id] }} sortBy={chosenSortBy} />
         </div>
       </main>
     </>

@@ -17,14 +17,6 @@ import {
   ProductOrder,
 } from "@/saleor/api";
 
-const headLineSectionStyle = {
-  width: "100%",
-  backgroundImage: `url(${"/images/default_headline_image.png"})`,
-  backgroundPosition: "center",
-  backgroundSize: "cover",
-  backgroundRepeat: "no-repeat",
-};
-
 export const getStaticProps = async (context: GetStaticPropsContext) => {
   const result: ApolloQueryResult<HomepageBlocksQuery> = await apolloClient.query<
     HomepageBlocksQuery,
@@ -59,8 +51,9 @@ function Home({ menuData }: InferGetStaticPropsType<typeof getStaticProps>) {
           <div className="container" />
         </header>
 
-        <section className="bg-fixed align-middle pb-6 md:pb-10" style={headLineSectionStyle}>
-          <div className="ph_HeadlineSection ml-8 mr-8 sm:ml-15 align-middle ">
+        <div className="headLineSectionStyle headLineSectionHeight" />
+        <section className="pl-10 md:pl-15 container bg-fixed align-middle pb-6 md:pb-10 headLineSectionHeight">
+          <div className="ph_HeadlineSection sm:mr-8 mr-5  align-middle ">
             <h3 className="max-w-4xl py-4 text-white sm:text-5xl lg:text-7xl">
               Which book should I read first?
             </h3>
@@ -73,7 +66,7 @@ function Home({ menuData }: InferGetStaticPropsType<typeof getStaticProps>) {
         </section>
 
         <main>
-          <div className="container py-10">
+          <div className="pl-10 md:pl-15 container py-10">
             <ProductSort passData={passData} />
             {menuData?.menu?.items?.map((m) => {
               if (!m) {

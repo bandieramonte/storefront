@@ -86,7 +86,7 @@ function ProductPage({ product, collection }: InferGetStaticPropsType<typeof get
           "gap-4 max-h-full overflow-auto md:overflow-hidden container pt-8 px-8 md:grid-cols-3"
         )}
       >
-        <div>
+        <div className="pb-5 sm:pb-3">
           <button onClick={router.back} className="text-base cursor-pointer" type="button">
             {t.formatMessage(messages.goBack)}
           </button>
