@@ -162,9 +162,9 @@ export const messages = defineMessages({
     description: "Message informing user that the shipping is free.",
     defaultMessage: "Free shipping",
   },
-  longDescription: {
-    id: "app.product.longDescription",
-    description: "Message for the title of a product page long description.",
+  description: {
+    id: "app.product.description",
+    description: "Message for the label of a product page description.",
     defaultMessage: "Description",
   },
   suggestedProducts: {

@@ -76,7 +76,7 @@ function ProductPage({ product, collection }: InferGetStaticPropsType<typeof get
 
   const selectedVariantID = getSelectedVariantID(product, router);
   const selectedVariant = product?.variants?.find((v) => v?.id === selectedVariantID) || undefined;
-  const longDescription = translate(product, "longDescription");
+  const description = translate(product, "description");
 
   return (
     <>
@@ -98,16 +98,17 @@ function ProductPage({ product, collection }: InferGetStaticPropsType<typeof get
           <ProductGallery product={product} selectedVariant={selectedVariant} />
         </div>
         <div className="xl:w-4/6 m-auto">
-          {longDescription && (
-            <div>
-              <p className="text-lg mt-2 font-medium text-gray-500 underline mb-11 mt-8 text-center w-full">
-                {t.formatMessage(messages.longDescription)}
-              </p>
-              <div className="space-y-6">
-                <RichText jsonStringData={longDescription} />
+          <div>
+            <p className="text-lg mt-2 font-medium text-gray-500 underline mb-11 mt-8 text-center w-full">
+              {t.formatMessage(messages.description)}
+            </p>
+            {description && (
+              <div className="my-6">
+                <RichText jsonStringData={description} />
               </div>
-            </div>
-          )}
+            )}
+          </div>
+
           <div className="flex">
             <AttributeDetails product={product} selectedVariant={selectedVariant} />
           </div>

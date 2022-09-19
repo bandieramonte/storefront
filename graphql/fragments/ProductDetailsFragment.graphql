@@ -2,15 +2,15 @@ fragment ProductDetailsFragment on Product {
   id
   name
   slug
+  shortDescription
   description
-  longDescription
   seoDescription
   seoTitle
   isAvailableForPurchase
   translation(languageCode: $locale) {
     id
     description
-    longDescription
+    shortDescription
     name
   }
   attributes {

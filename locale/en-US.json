@@ -50,7 +50,7 @@
   "app.product.variantNotChosen": "Please choose the variant",
   "app.product.goBack": "Go back",
   "app.product.freeShipping": "Free shipping",
-  "app.product.longDescription": "Description",
+  "app.product.shortDescription": "Short description",
   "app.product.suggestedProducts": "Suggested Products",
   "app.region.channelField": "Channel",
   "app.region.languageField": "Language",

@@ -19,7 +19,6 @@ import {
 
 import { VariantSelector } from "../product/VariantSelector";
 import { useRegions } from "../RegionsProvider";
-import { RichText } from "../RichText";
 import { messages } from "../translations";
 
 export interface ProductDescriptorsProps {
@@ -113,71 +112,67 @@ export function ProductDescriptors({ product }: ProductDescriptorsProps) {
 
   const isAddToCartButtonDisabled =
     !selectedVariant || selectedVariant?.quantityAvailable === 0 || loadingAddToCheckout;
-  const shortDescription = translate(product, "description");
+  const shortDescription = translate(product, "shortDescription");
 
   return (
     <div>
-        {shortDescription && (
-          <div className="my-6">
-            <RichText jsonStringData={shortDescription} />
-          </div>
+      {shortDescription && <p className="my-6">{shortDescription}</p>}
+
+      <p className="font-semibold">{t.formatMessage(messages.freeShipping)}</p>
+
+      <div>
+        {price && (
+          <h2 className="text-lg font-bold tracking-tight text-gray-800 mt-6 mb-5">
+            {formatPrice(price)}
+          </h2>
         )}
-
-        <p className="font-semibold">{t.formatMessage(messages.freeShipping)}</p>
-
-        <div>
-          {price && (
-            <h2 className="text-lg font-bold tracking-tight text-gray-800 mt-6 mb-5">
-              {formatPrice(price)}
-            </h2>
-          )}
-          {/* Category link hidden for now */}
-          {!!product.category?.slug && (
-            <Link href={paths.category._slug(product?.category?.slug).$url()} passHref>
-              <button type="button" className="text-lg font-medium hidden">
-                {translate(product.category, "name")}
-              </button>
-            </Link>
-          )}
-        </div>
-
-        <VariantSelector product={product} selectedVariantID={selectedVariantID} />
-
-        {!selectedVariant && (
-          <p className="text-base text-yellow-600 mt-5">
-            {t.formatMessage(messages.variantNotChosen)}
-          </p>
+        {/* Category link hidden for now */}
+        {!!product.category?.slug && (
+          <Link href={paths.category._slug(product?.category?.slug).$url()} passHref>
+            <button type="button" className="text-lg font-medium hidden">
+              {translate(product.category, "name")}
+            </button>
+          </Link>
         )}
-
-        {selectedVariant?.quantityAvailable === 0 && (
-          <p className="text-base text-yellow-600 mt-5">{t.formatMessage(messages.soldOut)}</p>
-        )}
-
-        <div className="flex flex-row items-center gap-5 mt-2">
-          <input
-            type="number"
-            className="h-8 md:mt-2 w-10 md:w-16 block  bg-transparent border-x-0 border-t-0 rounded-md text-base text-center"
-            defaultValue={1}
-            onChange={(ev) => updateQuantity(ev)}
-            min={1}
-            required
-            pattern="[0-9]*"
-          />
-
-          <button
-            onClick={onAddToCart}
-            type="submit"
-            disabled={isAddToCartButtonDisabled}
-            className={clsx("btn-main my-5  ", isAddToCartButtonDisabled && "btn-main-disabled")}
-          >
-            {loadingAddToCheckout
-              ? t.formatMessage(messages.adding)
-              : t.formatMessage(messages.addToCart)}
-          </button>
-        </div>
-
-        {!!addToCartError && <p className="text-red-500 text-sm font-medium">{addToCartError}</p>}
       </div>
+
+      <VariantSelector product={product} selectedVariantID={selectedVariantID} />
+
+      {!selectedVariant && (
+        <p className="text-base text-yellow-600 mt-5">
+          {t.formatMessage(messages.variantNotChosen)}
+        </p>
+      )}
+
+      {selectedVariant?.quantityAvailable === 0 && (
+        <p className="text-base text-yellow-600 mt-5">{t.formatMessage(messages.soldOut)}</p>
+      )}
+
+      <div className="flex flex-row items-center gap-5 mt-2">
+        <input
+          type="number"
+          className="h-8 md:mt-2 w-10 md:w-16 block  bg-transparent border-x-0 border-t-0 rounded-md text-base text-center"
+          defaultValue={1}
+          onChange={(ev) => updateQuantity(ev)}
+          min={1}
+          required
+          pattern="[0-9]*"
+        />
+
+        <button
+          onClick={onAddToCart}
+          type="submit"
+          disabled={isAddToCartButtonDisabled}
+          className={clsx("btn-main my-5  ", isAddToCartButtonDisabled && "btn-main-disabled")}
+        >
+          {loadingAddToCheckout
+            ? t.formatMessage(messages.adding)
+            : t.formatMessage(messages.addToCart)}
+        </button>
+      </div>
+
+      {!!addToCartError && <p className="text-red-500 text-sm font-medium">{addToCartError}</p>}
+    </div>
   );
 }
 
